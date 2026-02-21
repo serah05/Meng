@@ -304,6 +304,18 @@
             100% { transform: rotate(3deg); }
         }
 
+
+	#musicBtn {
+    background-color: #26a69a;
+    color: white;
+    box-shadow: 0 4px 15px rgba(38, 166, 154, 0.4);
+}
+
+body.warm-mode #musicBtn {
+    background-color: #004d40;
+    color: #b2dfdb;
+}
+
     </style>
 </head>
 <body class="light-mode">
@@ -374,6 +386,7 @@
         </div>
     </div>
 
+
     <script>
         function toggleLight() {
             const body = document.body;
@@ -405,6 +418,39 @@
         function closeModalBtn() {
             document.getElementById('sweetModal').classList.remove('show');
         }
+
+// Force autoplay after first user interaction
+document.addEventListener("click", function () {
+    const music = document.getElementById("bgMusic");
+    if (music.paused) {
+        music.play().catch(() => {});
+    }
+}, { once: true });
+
+document.addEventListener("click", function () {
+    const music = document.getElementById("bgMusic");
+    music.volume = 0;
+    music.play().then(() => {
+        let fade = setInterval(() => {
+            if (music.volume < 0.9) {
+                music.volume += 0.05;
+            } else {
+                clearInterval(fade);
+            }
+        }, 200);
+    }).catch(() => {});
+}, { once: true });
+
+
+
+
+
     </script>
+
+<!-- Background Music -->
+<audio id="bgMusic" autoplay loop>
+    <source src="New_Project.mp3" type="audio/mpeg">
+</audio>
+
 </body>
 </html>
