@@ -420,16 +420,19 @@ body.warm-mode #musicBtn {
         }
 
 // Force autoplay after first user interaction
-document.addEventListener("click", function () {
-    const music = document.getElementById("bgMusic");
-    if (music.paused) {
-        music.play().catch(() => {});
-    }
-}, { once: true });
+<audio id="bgMusic" autoplay loop muted>
+    <source src="New_Project.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+const music = document.getElementById("bgMusic");
+
+// Start muted so autoplay works
+music.volume = 0;
 
 document.addEventListener("click", function () {
-    const music = document.getElementById("bgMusic");
-    music.volume = 0;
+    music.muted = false;
+
     music.play().then(() => {
         let fade = setInterval(() => {
             if (music.volume < 0.9) {
@@ -439,7 +442,9 @@ document.addEventListener("click", function () {
             }
         }, 200);
     }).catch(() => {});
+
 }, { once: true });
+</script>
 
     </script>
 
@@ -453,6 +458,7 @@ document.addEventListener("click", function () {
 
 </body>
 </html>
+
 
 
 
