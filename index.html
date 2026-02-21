@@ -420,14 +420,6 @@ body.warm-mode #musicBtn {
         }
 
 // Force autoplay after first user interaction
-<audio id="bgMusic" autoplay loop muted>
-    <source src="New_Project.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-const music = document.getElementById("bgMusic");
-
-// Force autoplay after first user interaction
 document.addEventListener("click", function () {
     const music = document.getElementById("bgMusic");
     if (music.paused) {
@@ -448,20 +440,17 @@ document.addEventListener("click", function () {
         }, 200);
     }).catch(() => {});
 }, { once: true });
+
+
+
+
+
     </script>
 
-	
 <!-- Background Music -->
-<audio controls>
-	<audio id="bgMusic" autoplay loop>
-  <source src="New_Project.mp3" type="audio/mpeg">
-  Your browser does not support the audio element.
+<audio id="bgMusic" autoplay loop>
+    <source src="New_Project.mp3" type="audio/mpeg">
 </audio>
 
 </body>
 </html>
-
-
-
-
-
